@@ -124,14 +124,6 @@ __BEGIN_DECLS
  * "sup_sampling_rates=44100|48000" */
 #define AUDIO_PARAMETER_STREAM_SUP_SAMPLING_RATES "sup_sampling_rates"
 
-/* Query handle fm parameter*/
-#define AUDIO_PARAMETER_KEY_HANDLE_FM "handle_fm"
- /* Query fm volume */
-#define AUDIO_PARAMETER_KEY_FM_VOLUME "fm_volume"
-
-/* Query Sound Card Status */
-#define AUDIO_PARAMETER_KEY_SND_CARD_STATUS "SND_CARD_STATUS"
-
 /**
  * audio codec parameters
  */
@@ -148,6 +140,40 @@ __BEGIN_DECLS
 #define AUDIO_OFFLOAD_CODEC_DOWN_SAMPLING  "music_offload_down_sampling"
 #define AUDIO_OFFLOAD_CODEC_DELAY_SAMPLES  "delay_samples"
 #define AUDIO_OFFLOAD_CODEC_PADDING_SAMPLES  "padding_samples"
+#define AUDIO_OFFLOAD_CODEC_WMA_FORMAT_TAG "music_offload_wma_format_tag"
+#define AUDIO_OFFLOAD_CODEC_WMA_BLOCK_ALIGN "music_offload_wma_block_align"
+#define AUDIO_OFFLOAD_CODEC_WMA_BIT_PER_SAMPLE "music_offload_wma_bit_per_sample"
+#define AUDIO_OFFLOAD_CODEC_WMA_CHANNEL_MASK "music_offload_wma_channel_mask"
+#define AUDIO_OFFLOAD_CODEC_WMA_ENCODE_OPTION "music_offload_wma_encode_option"
+#define AUDIO_OFFLOAD_CODEC_WMA_ENCODE_OPTION1"music_offload_wma_encode_option1"
+#define AUDIO_OFFLOAD_CODEC_WMA_ENCODE_OPTION2 "music_offload_wma_encode_option2"
+
+/* Query handle fm parameter*/
+#define AUDIO_PARAMETER_KEY_HANDLE_FM "handle_fm"
+
+/* Query voip flag */
+#define AUDIO_PARAMETER_KEY_VOIP_CHECK "voip_flag"
+
+/* Query Fluence type */
+#define AUDIO_PARAMETER_KEY_FLUENCE_TYPE "fluence"
+
+/* Query if surround sound recording is supported */
+#define AUDIO_PARAMETER_KEY_SSR "ssr"
+
+/* Query if a2dp  is supported */
+#define AUDIO_PARAMETER_KEY_HANDLE_A2DP_DEVICE "isA2dpDeviceSupported"
+
+/* Query ADSP Status */
+#define AUDIO_PARAMETER_KEY_ADSP_STATUS "ADSP_STATUS"
+
+/* Query Sound Card Status */
+#define AUDIO_PARAMETER_KEY_SND_CARD_STATUS "SND_CARD_STATUS"
+
+/* Query if Proxy can be Opend */
+#define AUDIO_CAN_OPEN_PROXY "can_open_proxy"
+
+/* Query fm volume */
+#define AUDIO_PARAMETER_KEY_FM_VOLUME "fm_volume"
 
 /**************************************/
 
@@ -412,6 +438,7 @@ struct audio_stream_out {
      */
     int (*get_presentation_position)(const struct audio_stream_out *stream,
                                uint64_t *frames, struct timespec *timestamp);
+#endif
 #ifdef QCOM_DIRECTTRACK
     /**
     * return the current timestamp after quering to the driver
@@ -435,7 +462,6 @@ struct audio_stream_out {
      */
     int (*is_buffer_available) (const struct audio_stream_out *stream,
                                      int *isAvail);
-#endif
 #endif
 };
 typedef struct audio_stream_out audio_stream_out_t;
